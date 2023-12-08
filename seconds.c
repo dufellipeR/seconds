@@ -62,7 +62,7 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
 
         completed = 1;
 
-        rv = sprintf(buffer, "%lu\n", (jiffies - initialJiff) / HZ);
+        rv = sprintf(buffer, "%lu seconds since module was loaded\n", (jiffies - initialJiff) / HZ);
 
         // copies the contents of buffer to userspace usr_buf
         copy_to_user(usr_buf, buffer, rv);
