@@ -26,6 +26,7 @@ static const struct proc_ops prof_file_fops = {
 static int proc_init(void)
 {
     initialJiff = jiffies;
+
     // creates the /proc/  entry
     proc_create(PROC_NAME, 0, NULL, &prof_file_fops);
     
@@ -61,7 +62,7 @@ static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, 
 
         completed = 1;
 
-        rv = sprintf(buffer, "%lu\n", (jiffies - initialJiff)/ HZ);
+        rv = sprintf(buffer, "%lu\n", (jiffies - initialJiff) / HZ);
 
         // copies the contents of buffer to userspace usr_buf
         copy_to_user(usr_buf, buffer, rv);
